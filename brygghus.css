@@ -1,0 +1,76 @@
+body {
+  overflow: hidden;
+  margin: 0;
+}
+
+.wrapper {
+  position: relative;
+  -webkit-transform: translateY(0%);
+  -moz-transform: translateY(0%);
+  -ms-transform: translateY(0%);
+  -o-transform: translateY(0%);
+  transform: translateY(0%);
+  -webkit-transition: 0.6s transform ease-in;
+  -moz-transition: 0.6s transform ease-in;
+  -ms-transition: 0.6s transform ease-in;
+  -o-transition: 0.6s transform ease-in;
+  transition: 0.6s transform ease-in;
+}
+
+.wrapper.show-products {
+  -webkit-transform: translateY(-100%);
+  -moz-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  -o-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.wrapper.show-contact {
+  -webkit-transform: translateY(-200%);
+  -moz-transform: translateY(-200%);
+  -ms-transform: translateY(-200%);
+  -o-transform: translateY(-200%);
+  transform: translateY(-200%);
+}
+
+.home,
+.products,
+.contact {
+  position: absolute;
+  overflow: hidden;
+}
+
+.products {
+  top: 100%;
+}
+
+.contact {
+  top: 200%;
+}
+
+.img-home,
+.img-products {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
+
+.menu-main {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  line-height: 2.25em;
+  text-align: center;
+  z-index: 1;
+  bottom: 0;
+  background-color: #fff8e0;
+}
+
+.button-home,
+.button-products,
+.button-contact {
+  display: inline-block;
+  margin: 0 1em;
+  cursor: pointer;
+}
