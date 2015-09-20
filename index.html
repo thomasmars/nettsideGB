@@ -3,29 +3,165 @@
 <head>
   <meta charset="UTF-8">
   <title>Graff Brygghus</title>
-  <script src="jquery-1.11.3.min.js"></script>
-  <script src="brygghus.js"></script>
-  <link rel="stylesheet" href="brygghus.css">
+  <script src="scripts/imports/jquery-1.11.3.min.js"></script>
+  <script src="scripts/imports/jquery.mixitup.js"></script>
+  <script src="scripts/slide-controls.js"></script>
+  <script src="scripts/header.js"></script>
+  <script src="scripts/products-page.js"></script>
+  <script src="scripts/main.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  <link rel="stylesheet" href="styles/main-wrapper.css">
+  <link rel="stylesheet" href="styles/header.css">
+  <link rel="stylesheet" href="styles/footer.css">
+  <link rel="stylesheet" href="styles/products-list.css">
+  <link rel="stylesheet" href="styles/spinner.css">
+  <link rel="stylesheet" href="styles/contact-page.css">
 </head>
 <body>
+<div class="footer"></div>
 <div class="menu-main">
-  <div class="button-home">Home page</div>
-  <div class="button-products">Products</div>
-  <div class="button-contact">Contact</div>
+  <img class="img-logo" src="images/logo.png">
+  <div class="button-home">HOME PAGE</div>
+  <div class="button-products">PRODUCTS</div>
+  <div class="button-contact">CONTACT</div>
 </div>
 <div class="wrapper">
   <div class="home">
     <img class="img-home" src="images/eske.jpg">
   </div>
   <div class="products">
-    <img class="img-products" src="images/gruppebilde.jpg">
-    <div class="products-product1"> Her kommer produkt 1!</div>
+    <div class="products-list">
+      <div class="controls-filter">
+        <div class="filter-series">
+          <button class="filter button-all selected" data-filter="all">ALL</button>
+          <button class="filter button-american-series" data-filter=".products-american">AMERICAN ALE SERIES</button>
+          <button class="filter button-german-series" data-filter=".products-german">GERMAN LAGER SERIES</button>
+          <button class="filter button-other" data-filter=".products-other">OTHERS</button>
+        </div>
+      </div>
+      <div class="products-display">
+        <div class="mix products-american img-product-blonde" data-my-order="1">
+          <div class="loader-container">
+            <div class="loader"></div>
+          </div>
+          <img data-src="images/etiketter/cropped/Graff_Blonde-Ale.png">
+          <div class="overlay"></div>
+        </div>
+        <div class="mix products-german img-product-dunkel" data-my-order="2">
+          <div class="loader-container">
+            <div class="loader"></div>
+          </div>
+          <img data-src="images/etiketter/cropped/Graff_Dunkel.png">
+          <div class="overlay"></div>
+        </div>
+        <div class="mix products-german img-product-helles" data-my-order="3">
+          <div class="loader-container">
+            <div class="loader"></div>
+          </div>
+          <img data-src="images/etiketter/cropped/Graff_Helles.png">
+          <div class="overlay"></div>
+        </div>
+        <div class="mix products-american img-product-portland" data-my-order="4">
+          <div class="loader-container">
+            <div class="loader"></div>
+          </div>
+          <img data-src="images/etiketter/cropped/Graff_Portland.png">
+          <div class="overlay"></div>
+        </div>
+        <div class="mix products-american img-product-redhead" data-my-order="5">
+          <div class="loader-container">
+            <div class="loader"></div>
+          </div>
+          <img data-src="images/etiketter/cropped/Graff_Red-Head.png">
+          <div class="overlay"></div>
+        </div>
+        <div class="mix products-american img-product-session" data-my-order="6">
+          <div class="loader-container">
+            <div class="loader"></div>
+          </div>
+          <img data-src="images/etiketter/cropped/Graff_Session-IPA.png">
+          <div class="overlay"></div>
+        </div>
+        <div class="mix products-american img-product-stillehav" data-my-order="7">
+          <div class="loader-container">
+            <div class="loader"></div>
+          </div>
+          <img data-src="images/etiketter/cropped/Graff_Stille-Hav.png">
+          <div class="overlay"></div>
+        </div>
+        <div class="mix products-other img-product-stout" data-my-order="8" >
+          <div class="loader-container">
+            <div class="loader"></div>
+          </div>
+          <img data-src="images/etiketter/cropped/Graff_Dry-Stout.png">
+          <div class="overlay"></div>
+        </div>
+      </div>
+      <div class="products-pages product-blonde">
+        <div class="product-info">
+          <div class="product-header">
+            <button class="back-to-product"></button>
+            <h2 class="product-title">BLONDE ALE</h2>
+          </div>
+          <div class="info-field">
+            <div class="poetic-text">
+              <b>LYS, TØRR</b> og forfriskende tørsteslukker fra Amerika<br>
+              Kald og duggfrisk. Til sommerkvelden og alle andre kvelder.
+            </div>
+            <div class="info-list">
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+              <div class="info-entry"><span class="entry-type">Alkoholprosent</span><span class="entry-value">4,6%</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="product-images">
+          <img data-src="images/etiketter/cropped/Graff_Blonde-Ale.png">
+        </div>
+      </div>
+      <div class="products-pages product-dunkel">
+        <div>This is a product page!</div>
+        <img data-src="images/etiketter/cropped/Graff_Dunkel.png">
+      </div>
+      <div class="products-pages product-helles">
+        <div>This is a product page!</div>
+        <img data-src="images/etiketter/cropped/Graff_Helles.png">
+      </div>
+      <div class="products-pages product-portland">
+        <div>This is a product page!</div>
+        <img data-src="images/etiketter/cropped/Graff_Portland.png">
+      </div>
+      <div class="products-pages product-redhead">
+        <div>This is a product page!</div>
+        <img data-src="images/etiketter/cropped/Graff_Red-Head.png">
+      </div>
+      <div class="products-pages product-session">
+        <div>This is a product page!</div>
+        <img data-src="images/etiketter/cropped/Graff_Session-IPA.png">
+      </div>
+      <div class="products-pages product-stillehav">
+        <div>This is a product page!</div>
+        <img data-src="images/etiketter/cropped/Graff_Stille-Hav.png">
+      </div>
+      <div class="products-pages product-stout">
+        <div>This is a product page!</div>
+        <img data-src="images/etiketter/cropped/Graff_Dry-Stout.png">
+      </div>
+    </div>
   </div>
   <div class="contact">
+    <div class="google-map"></div>
     <img class="img-contact" src="images/festival.jpg">
   </div>
 </div>
-
-
 </body>
 </html>

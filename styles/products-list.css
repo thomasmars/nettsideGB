@@ -1,0 +1,258 @@
+.products-pages {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  width: 100%;
+  height: calc(100% - 3.5em);
+}
+
+.products-pages.product-blonde {
+  left: 100%
+}
+
+.products-pages.product-dunkel {
+  left: 200%
+}
+
+.products-pages.product-helles {
+  left: 300%
+}
+
+.products-pages.product-portland {
+  left: 400%
+}
+
+.products-pages.product-redhead {
+  left: 500%
+}
+
+.products-pages.product-session {
+  left: 600%
+}
+
+.products-pages.product-stillehav {
+  left: 700%
+}
+
+.products-pages.product-stout {
+  left: 800%
+}
+
+.products-pages.clone {
+  left: -100%;
+}
+
+/* Product page */
+.products-pages .product-info {
+  display: inline-block;
+  width: 50%;
+}
+
+.products-pages .product-info .product-header {
+  margin-left: 30%;
+  margin-right: 9%;
+}
+
+.products-pages .product-info .back-to-product {
+  float: left;
+  background-color: transparent;
+  border: none;
+  color: #EBBB51;
+  font-size: 1.25em;
+}
+
+.products-pages .product-info .back-to-product:before {
+  font-family: FontAwesome;
+  content: '\f060';
+}
+
+.products-pages .product-info .product-title {
+  font-family: Jaapokki, sans-serif;
+  text-align: center;
+}
+
+.products-pages .product-info .info-field {
+  width: 55%;
+  margin-left: 30%;
+  padding: 1.5em;
+  background-color: #EBBB51;
+}
+
+.products-pages .product-info .poetic-text {
+  margin-bottom: 2em;
+  text-align: center;
+  font-size: 1em;
+}
+
+.products-pages .product-info .info-entry {
+  position: relative;
+  padding: 0.5em 0;
+  border-top: 1px solid black;
+  width: auto;
+  text-align: left;
+}
+
+.products-pages .product-info .info-entry:last-child {
+  border-bottom: 1px solid black;
+}
+
+.products-pages .product-info .info-entry .entry-type {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 1.5em;
+}
+
+.products-pages .product-info .info-entry .entry-value {
+
+}
+
+.products-pages .product-images {
+  display: inline-block;
+  position: relative;
+  width: 50%;
+  height: 100%;
+  float: right;
+}
+
+.products-pages .product-images img {
+  width: 70%;
+  position: absolute;
+  top: 12.25%;
+}
+
+.products-list {
+  height: calc(100% - 4.5em);
+  top: 4.5em;
+  position: relative;
+  width: 100%;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: transform 0.8s ease-in-out;
+  transition: transform 0.8s ease-in-out;
+}
+
+.products-display .mix {
+  display: none;
+  position: relative;
+  width: 300px;
+  margin-bottom: 1em;
+}
+
+.products-display img {
+  position: relative;
+  width: 95%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  left: 50%;
+}
+
+.products-display .overlay {
+  position: absolute;
+  width: 95%;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-color: #fff8e0;
+  opacity: 0.75;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+  cursor: pointer;
+}
+
+.products-display .overlay:hover {
+  opacity: 0;
+}
+
+.products-list .controls-filter {
+  position: relative;
+  height: 4.5em;
+  line-height: 4.5em;
+  text-align: right;
+}
+
+.products-list .products-display {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: calc(100% - 4.5em - 3em);
+  overflow-y: auto;
+}
+
+.controls-filter .filter-series {
+  font-family: Jaapokki, sans-serif;
+  display: inline-block;
+  margin: 0 1.25%;
+}
+
+/* Amount of images to display */
+.products-display.two-images .mix {
+  width: 49.9%;
+}
+
+.products-display.three-images .mix {
+  width: 32.9%;
+}
+
+.products-display.four-images .mix {
+  width: 24.5%;
+}
+
+.products-display.five-images .mix {
+  width: 19.7%;
+}
+
+
+/* Cool button filters */
+.controls-filter button {
+  position: relative;
+  display: inline-block;
+  font-family: Jaapokki, sans-serif;
+  font-size: 0.9em;
+  padding: 0 1em 0.5em;
+
+  color: #000;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  text-shadow: none;
+  outline: none;
+  text-decoration: none;
+}
+
+.controls-filter button:before {
+  margin-right: 10px;
+  content: '[';
+  -webkit-transform: translateX(20px);
+  -moz-transform: translateX(20px);
+  transform: translateX(20px);
+}
+
+.controls-filter button::after {
+  margin-left: 10px;
+  content: ']';
+  -webkit-transform: translateX(-20px);
+  -moz-transform: translateX(-20px);
+  transform: translateX(-20px);
+}
+
+.controls-filter button::before,
+.controls-filter button::after {
+  display: inline-block;
+  opacity: 0;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.2s;
+  -moz-transition: -moz-transform 0.3s, opacity 0.2s;
+  transition: transform 0.3s, opacity 0.2s;
+}
+
+.controls-filter button:hover::before,
+.controls-filter button:hover::after,
+.controls-filter button.active::before,
+.controls-filter button.active::after {
+  opacity: 1;
+  -webkit-transform: translateX(0px);
+  -moz-transform: translateX(0px);
+  transform: translateX(0px);
+}
