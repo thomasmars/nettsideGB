@@ -1,4 +1,16 @@
 .google-map {
-  width: 500px;
-  height: 400px;
+  position: absolute;
+  top: 25%;
+  left: 65%;
+  width: 30%;
+  height: 50%;
+}
+
+.contact-info {
+  position: absolute;
+  left: 5%;
+  top: 25%;
+  height: 50%;
+  width: 50%;
+  background-color: #fff8e0;
 }

@@ -68,3 +68,8 @@ body {
   width: 100%;
   height: auto;
 }
+
+.img-contact {
+  position: relative;
+  top: -220px;
+}

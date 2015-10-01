@@ -274,6 +274,10 @@ SlideControls = (function ($) {
 
       // Remove top height
       var top = newHeight - height;
+      if ($img.hasClass('img-contact')) {
+        // Add 10 %
+        top -= (newHeight / 9);
+      }
 
       $img.css({
         'width': width,
