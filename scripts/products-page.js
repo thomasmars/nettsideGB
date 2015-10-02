@@ -11,6 +11,7 @@ ProductsPage = (function ($) {
 
     this.initFilterButtons();
     this.initImageButtons();
+    this.initProductsButtons();
   };
 
   ProductsPage.prototype.loadClones = function () {
@@ -22,12 +23,12 @@ ProductsPage = (function ($) {
     var totalClones = $productPages.length;
     $productPages.each(function (idx) {
       var left = ((self.totalProductPages + 1 - (parseInt($(this).css('left'))) / $productPages.width())) * -100;
-      console.log(left);
-      console.log("what is left ??");
       var $clone = $(this).clone()
         .css('left', left + '%')
         .addClass('clone')
         .appendTo(self.$productsList);
+
+      self.initGoHomeButtons($clone.find('.back-to-product'));
 
       $clone.ready(function () {
         clonesLoaded += 1;
@@ -38,6 +39,17 @@ ProductsPage = (function ($) {
       });
     });
 
+  };
+
+  ProductsPage.prototype.initProductsButtons = function () {
+    this.initGoHomeButtons($('.back-to-product'));
+  };
+
+  ProductsPage.prototype.initGoHomeButtons = function ($buttons) {
+    var self = this;
+    $buttons.click(function () {
+      self.goHome();
+    })
   };
 
   ProductsPage.prototype.initFilterButtons = function () {

@@ -8,7 +8,7 @@
 
     var slideControls = new SlideControls($wrapper);
     var productsPage = new ProductsPage();
-    var graffHeader = new GraffHeader($wrapper, productsPage);
+    new GraffHeader($wrapper, productsPage);
     new ContactPage();
 
     slideControls.initImageLoaderChain(function () {

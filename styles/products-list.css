@@ -69,6 +69,7 @@
 .products-pages .product-info .product-title {
   font-family: Jaapokki, sans-serif;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .products-pages .product-info .info-field {
