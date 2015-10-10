@@ -38,11 +38,14 @@ ProductsPage = (function ($) {
         }
       });
     });
-
   };
 
   ProductsPage.prototype.initProductsButtons = function () {
     this.initGoHomeButtons($('.back-to-product'));
+  };
+
+  ProductsPage.prototype.initImageRollButtons = function () {
+    this.$productsList.find('.')
   };
 
   ProductsPage.prototype.initGoHomeButtons = function ($buttons) {
