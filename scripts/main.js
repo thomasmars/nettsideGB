@@ -7,7 +7,7 @@
     var $wrapper = $('.wrapper');
 
     var slideControls = new SlideControls($wrapper);
-    var productsPage = new ProductsPage();
+    var productsPage = new ProductsPage(slideControls);
     new GraffHeader($wrapper, productsPage);
     new ContactPage();
 

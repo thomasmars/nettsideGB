@@ -115,12 +115,16 @@ SlideControls = (function ($) {
 
     if (this.windowWidth <= 600) {
       $productsDisplay.removeClass('three-images four-images five-images').addClass('two-images');
+      this.imageAmounts = 2;
     } else if (this.windowWidth <= 900) {
       $productsDisplay.removeClass('two-images four-images five-images').addClass('three-images');
+      this.imageAmounts = 3;
     } else if (this.windowWidth <= 1200) {
       $productsDisplay.removeClass('two-images three-images five-images').addClass('four-images');
+      this.imageAmounts = 4;
     } else {
       $productsDisplay.removeClass('two-images three-images four-images').addClass('five-images');
+      this.imageAmounts = 5;
     }
   };
 
@@ -133,6 +137,10 @@ SlideControls = (function ($) {
         self.slideUp();
       }
     })
+  };
+
+  SlideControls.prototype.getImageAmounts = function () {
+    return this.imageAmounts;
   };
 
   SlideControls.prototype.initTouchListeners = function (touchMoveDelay, touchMovePercentageThreshold) {
@@ -239,6 +247,7 @@ SlideControls = (function ($) {
     } else {
       this.$wrapper.addClass('show-products');
     }
+    $('body').removeClass('');
   };
 
   SlideControls.prototype.slideUp = function () {
@@ -247,6 +256,7 @@ SlideControls = (function ($) {
     } else if (this.$wrapper.hasClass('show-products')) {
       this.$wrapper.removeClass('show-products');
     }
+    $('body').removeClass();
   };
 
   SlideControls.prototype.imageResize = function ($img) {

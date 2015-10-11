@@ -20,6 +20,7 @@ GraffHeader = (function ($) {
 
     $('.button-home, .img-logo').click(function () {
       self.$wrapper.removeClass('show-products').removeClass('show-contact');
+      $('body').removeClass();
     });
 
     $('.button-products').click(function () {
@@ -29,6 +30,7 @@ GraffHeader = (function ($) {
 
     $('.button-contact').click(function () {
       self.$wrapper.removeClass('show-products').addClass('show-contact');
+      $('body').removeClass();
     });
   };
 

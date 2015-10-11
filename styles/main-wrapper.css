@@ -73,3 +73,37 @@ body {
   position: relative;
   top: -220px;
 }
+
+/* Color schemes */
+body .footer {
+  -webkit-transition: background-color 0.8s ease-out;
+  transition: background-color 0.8s ease-out;
+}
+
+body.dunkel .footer {
+  background-color: rgb(111, 77, 60);
+}
+
+body.helles .footer {
+  background-color: rgb(215, 159, 58);
+}
+
+body.portland .footer {
+  background-color: rgb(176, 122, 83);
+}
+
+body.redhead .footer {
+  background-color: rgb(156, 58, 65);
+}
+
+body.session .footer {
+  background-color: rgb(116, 185, 165);
+}
+
+body.stillehav .footer {
+  background-color: rgb(118, 155, 175);
+}
+
+body.stout .footer {
+  background-color: rgb(62, 53, 43);
+}

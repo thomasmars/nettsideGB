@@ -54,17 +54,39 @@
 }
 
 .products-pages .product-info .back-to-product {
+  position: relative;
   float: left;
-  background-color: transparent;
   border: none;
-  color: #EBBB51;
+  color: white;
+  background-color: rgb(235, 187, 81);
+  padding: 0.25em 0.5em;
   font-size: 1.25em;
   cursor: pointer;
+  width: 2em;
+  height: 1.5em;
+  line-height: 1.5em;
+}
+
+.products-pages .product-info .back-to-product {
+  outline: 0;
 }
 
 .products-pages .product-info .back-to-product:before {
   font-family: FontAwesome;
+  position: absolute;
   content: '\f060';
+  width: 2em;
+  height: 1.5em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+}
+
+.products-pages .product-info .back-to-product:hover:before {
+  -webkit-transform: translate(-65%, -50%);
+  transform: translate(-65%, -50%);
 }
 
 .products-pages .product-info .product-title {
@@ -77,7 +99,7 @@
   width: 55%;
   margin-left: 30%;
   padding: 1.5em;
-  background-color: #EBBB51;
+  border: 1px solid black;
 }
 
 .products-pages .product-info .poetic-text {
@@ -156,7 +178,7 @@
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   background-color: #fff8e0;
-  opacity: 0;
+  opacity: 0.4;
   -webkit-transition: opacity 0.5s;
   transition: opacity 0.5s;
   cursor: pointer;
@@ -196,25 +218,31 @@
   margin: auto;
 }
 
+.products-list .products-image-roll-inner {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition: ease-out 0.2s;
+  transition: ease-out 0.2s;
+}
+
 .products-list .products-image-roll-arrow {
-  font-size: 2em;
+  font-size: 3em;
   position: absolute;
   font-family: FontAwesome;
   left: 0;
-  width: 2em;
+  width: 1em;
+  height: 1em;
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   z-index: 1;
   text-align: center;
   cursor: pointer;
-}
-
-.products-list .products-image-roll-arrow:before {
-  content: '\f104';
-  padding: 0 0.25em;
-  background-color: #EBBB51;
+  background-color: rgb(235, 187, 81);
   color: white;
+  opacity: 1;
+  -webkit-transition: opacity 0.4s ease-out;
+  transition: opacity 0.4s ease-out;
 }
 
 .products-list .products-image-roll-arrow.right {
@@ -222,8 +250,61 @@
   left: auto;
 }
 
+.products-list .products-image-roll-arrow.hiding {
+  opacity: 0;
+}
+
+.products-list .products-image-roll-arrow.hidden {
+  display: none;
+}
+
+.products-list .products-image-roll-arrow:before {
+  position: absolute;
+  content: '\f104';
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.products-list .products-image-roll-arrow:hover:before {
+  -webkit-animation-name: move-left;
+  -moz-animation-name: move-left;
+  -o-animation-name: move-left;
+  animation-name: move-left;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -o-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-timing-function: ease;
+  -moz-animation-timing-function: ease;
+  -o-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+
 .products-list .products-image-roll-arrow.right:before {
   content: '\f105';
+}
+
+.products-list .products-image-roll-arrow.right:hover:before {
+  -webkit-animation-name: move-right;
+  -moz-animation-name: move-right;
+  -o-animation-name: move-right;
+  animation-name: move-right;
+  -webkit-animation-duration: 2s;
+  -moz-animation-duration: 2s;
+  -o-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-timing-function: ease;
+  -moz-animation-timing-function: ease;
+  -o-animation-timing-function: ease;
+  animation-timing-function: ease;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
+  -o-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 }
 
 .controls-filter .filter-series {
@@ -301,4 +382,63 @@
   -webkit-transform: translateX(0px);
   -moz-transform: translateX(0px);
   transform: translateX(0px);
+}
+
+/* Color schemes */
+.products-pages.product-dunkel .product-header .back-to-product {
+  background-color: rgb(111, 77, 60);
+}
+
+.products-pages.product-helles .product-header .back-to-product {
+  background-color: rgb(215, 159, 58);
+}
+
+.products-pages.product-portland .product-header .back-to-product {
+  background-color: rgb(176, 122, 83);
+}
+
+.products-pages.product-redhead .product-header .back-to-product {
+  background-color: rgb(156, 58, 65);
+}
+
+.products-pages.product-session .product-header .back-to-product {
+  background-color: rgb(116, 185, 165);
+}
+
+.products-pages.product-stillehav .product-header .back-to-product {
+  background-color: rgb(118, 155, 175);
+}
+
+.products-pages.product-stout .product-header .back-to-product {
+  background-color: rgb(62, 53, 43);
+}
+
+@keyframes move-right {
+  33% {
+    -webkit-transform: translateX(10%);
+    transform: translateX(10%);
+  }
+  66% {
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%);
+  }
+  100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes move-left {
+  33% {
+    -webkit-transform: translateX(-110%);
+    transform: translateX(-110%);
+  }
+  66% {
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+  100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
 }
