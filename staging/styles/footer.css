@@ -1,0 +1,15 @@
+.footer {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+
+  width: 70%;
+  height: 2.25em;
+  line-height: 2.25em;
+  text-align: center;
+  z-index: 1;
+  bottom: 0;
+  background-color: rgb(235, 187, 81);
+}
