@@ -3,7 +3,7 @@
  */
 define(['jquery'], function ($) {
 
-  var ProductsPage = function (slideControls) {
+  var ProductsPage = function (slideControls, beerData) {
     var self = this;
 
     this.slideControls = slideControls;
@@ -22,6 +22,8 @@ define(['jquery'], function ($) {
     this.initImageButtons();
     this.initProductsButtons();
 
+    this.beerClasses = this.getBeerClasses(beerData);
+
     setTimeout(function () {
       self.initImageRollButtons();
 
@@ -30,6 +32,29 @@ define(['jquery'], function ($) {
         self.initImageRollButtons();
       })
     }, 100);
+
+    $('body').on('reset-image-roll', function () {
+      // Reset image roll
+      self.currentImageRollIndex = 0;
+      self.setImageRollTranslate();
+
+      // Handle visibility of buttons
+      self.fadeToToggle(self.$imageRollArrowLeft, (self.currentImageRollIndex === 0));
+      self.fadeToToggle(self.$imageRollArrowRight, (self.currentImageRollIndex + self.slideControls.getImageAmounts() >= self.rollElements));
+    });
+  };
+
+  ProductsPage.prototype.getBeerClasses = function (beerData) {
+    var beerArray = [];
+
+    beerData.products.forEach(function (beerCategory) {
+      beerCategory['beer-products'].forEach(function (beer) {
+        var beerClass = beer['beer-name'];
+        beerArray.push(beerClass);
+      })
+    });
+
+    return beerArray;
   };
 
   ProductsPage.prototype.loadClones = function () {
@@ -121,6 +146,7 @@ define(['jquery'], function ($) {
     // Handle visibility of buttons
     self.fadeToToggle(this.$imageRollArrowLeft, (this.currentImageRollIndex === 0));
     self.fadeToToggle(this.$imageRollArrowRight, (this.currentImageRollIndex + visibleElements >= rollElements));
+    self.rollElements = rollElements;
   };
 
   ProductsPage.prototype.setImageRollTranslate = function (value) {
@@ -190,7 +216,6 @@ define(['jquery'], function ($) {
   };
 
   ProductsPage.prototype.goHome = function () {
-    console.log("going home!");
     this.goToBeerPage(0);
   };
 
@@ -204,7 +229,7 @@ define(['jquery'], function ($) {
       var beerClass = $('.products-display .mix').eq(index - 1).attr('class').split(' ').pop().split('-').pop();
       $('body').addClass(beerClass);
     } else {
-      $('body').removeClass();
+      this.removeFooterColor();
     }
 
 
@@ -223,6 +248,13 @@ define(['jquery'], function ($) {
       self.translateProductList(percentageTranslate);
       this.currentIndex = index;
     }
+  };
+
+  ProductsPage.prototype.removeFooterColor = function () {
+    var $body = $('body');
+    this.beerClasses.forEach(function (beerClass) {
+      $body.removeClass(beerClass);
+    });
   };
 
   ProductsPage.prototype.transitionProductList = function (value) {

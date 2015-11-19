@@ -7,30 +7,61 @@ define(['jquery'], function ($) {
     var self = this;
     this.$wrapper = $wrapper;
     this.initKeyboardListeners();
-    this.resizeWrapper();
 
     $(window).resize(function () {
-      self.resizeWrapper();
+      self.orientationResize();
     });
+
+    $(window).on('orientationchange', function () {
+      self.orientationResize();
+    });
+    self.orientationResize();
   };
 
-  SlideControls.prototype.resizeWrapper = function () {
+  SlideControls.prototype.orientationResize = function () {
+    var self = this;
+    var ratio = screen.width / screen.height;
+    var $productsDisplay = $('.products-display');
+    var $body = $('body');
+
+    // Landscape
+    if (ratio > 1) {
+      $body.removeClass('portrait');
+      self.resizeWrapper($productsDisplay);
+    } else {
+
+      // Portrait
+      $body.addClass('portrait');
+      $body.trigger('reset-image-roll');
+      self.portraitResize($productsDisplay);
+    }
+  };
+
+  SlideControls.prototype.portraitResize = function ($productsDisplay) {
+    var $productsDisplay = $productsDisplay || $('.products-display');
+
+    $productsDisplay.removeClass('two-images four-images five-images').addClass('three-images');
+    this.imageAmounts = 3;
+  };
+
+  SlideControls.prototype.resizeWrapper = function ($productsDisplay) {
+    var self = this;
     var windowWidth = $(window).width();
 
-    var $productsDisplay = $('.products-display');
+    var $productsDisplay = $productsDisplay || $('.products-display');
 
     if (windowWidth <= 600) {
       $productsDisplay.removeClass('three-images four-images five-images').addClass('two-images');
-      this.imageAmounts = 2;
+      self.imageAmounts = 2;
     } else if (windowWidth <= 900) {
       $productsDisplay.removeClass('two-images four-images five-images').addClass('three-images');
-      this.imageAmounts = 3;
+      self.imageAmounts = 3;
     } else if (windowWidth <= 1200) {
       $productsDisplay.removeClass('two-images three-images five-images').addClass('four-images');
-      this.imageAmounts = 4;
+      self.imageAmounts = 4;
     } else {
       $productsDisplay.removeClass('two-images three-images four-images').addClass('five-images');
-      this.imageAmounts = 5;
+      self.imageAmounts = 5;
     }
   };
 

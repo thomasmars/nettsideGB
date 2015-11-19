@@ -15,7 +15,12 @@ define(['jquery', 'mix-it-up'], function ($) {
       });
     };
 
+    $(window).on('touchmove', function (e) {
+      e.preventDefault();
+    });
+
     var imageResize = function ($img) {
+
       var natWidth = $img.get(0).naturalWidth;
       var natHeight = $img.get(0).naturalHeight;
       var imgRatio = natWidth / natHeight;

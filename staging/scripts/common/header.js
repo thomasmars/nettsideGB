@@ -21,17 +21,18 @@ define(['jquery'], function ($) {
 
     $('.button-home, .img-logo').click(function () {
       self.$wrapper.removeClass('show-products').removeClass('show-contact');
-      $('body').removeClass();
+      self.productsPage.removeFooterColor();
     });
 
     $('.button-products').click(function () {
       self.$wrapper.removeClass('show-contact').addClass('show-products');
+      self.productsPage.removeFooterColor();
       self.productsPage.goHome();
     });
 
     $('.button-contact').click(function () {
       self.$wrapper.removeClass('show-products').addClass('show-contact');
-      $('body').removeClass();
+      self.productsPage.removeFooterColor();
     });
   };
 

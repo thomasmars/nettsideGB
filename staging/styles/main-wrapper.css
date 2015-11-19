@@ -26,6 +26,10 @@ body {
   position: absolute;
 }
 
+.portrait {
+  font-size: 1.5em;
+}
+
 .wrapper {
   position: relative;
   -webkit-transform: translateY(0%);
@@ -85,36 +89,55 @@ body {
   top: -220px;
 }
 
-/* Color schemes */
+.portrait .img-contact {
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 body .footer {
   -webkit-transition: background-color 0.8s ease-out;
   transition: background-color 0.8s ease-out;
 }
 
-body.dunkel .footer {
-  background-color: rgb(111, 77, 60);
+/* Color schemes */
+.footer,
+.products-pages .back-to-product,
+.products-list .products-image-roll-arrow {
+  background: #F6AC26;
 }
 
-body.helles .footer {
-  background-color: rgb(215, 159, 58);
+body.dunkel .footer,
+.products-pages.product-dunkel .product-header .back-to-product {
+background-color: #915F2F;
 }
 
-body.portland .footer {
-  background-color: rgb(176, 122, 83);
+body.helles .footer,
+.products-pages.product-helles .product-header .back-to-product {
+  background-color: #E3A11F;
 }
 
-body.redhead .footer {
-  background-color: rgb(156, 58, 65);
+body.portland .footer,
+.products-pages.product-portland .product-header .back-to-product {
+  background-color: #C77716;
 }
 
-body.session .footer {
-  background-color: rgb(116, 185, 165);
+body.redhead .footer,
+.products-pages.product-redhead .product-header .back-to-product {
+  background-color: #B73B24;
 }
 
-body.stillehav .footer {
-  background-color: rgb(118, 155, 175);
+body.session .footer,
+.products-pages.product-session .product-header .back-to-product {
+  background-color: #14A29B;
 }
 
-body.stout .footer {
-  background-color: rgb(62, 53, 43);
+body.stillehav .footer,
+.products-pages.product-stillehav .product-header .back-to-product {
+  background-color: #219DB5;
+}
+
+body.stout .footer,
+.products-pages.product-stout .product-header .back-to-product {
+  background-color: #523423;
 }

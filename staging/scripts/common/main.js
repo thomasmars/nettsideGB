@@ -18,11 +18,6 @@ define(function (require) {
   $(document).ready(function(){
     var $wrapper = $('.wrapper');
 
-
-    var slideControls = new SlideControls($wrapper);
-
-    new ContactPage();
-
     // Load images and clones
     var resourceLoader = new ResourceLoader().init();
 
@@ -48,8 +43,10 @@ define(function (require) {
           resourceLoader.initProductPagesImageLoad();
 
           // Enable product page functionality
-          var productsPage = new ProductsPage(slideControls);
+          var slideControls = new SlideControls($wrapper);
+          var productsPage = new ProductsPage(slideControls, view);
           new GraffHeader($wrapper, productsPage);
+          new ContactPage();
 
           // Finally load clones to create 'product roll'
           productsPage.loadClones();

@@ -9,6 +9,13 @@
   background: #fff8e0;
 }
 
+.portrait .google-map-frame {
+  top: 10%;
+  left: 50%;
+  width: 45%;
+  height: 40%;
+}
+
 .google-map-frame-inner {
   position: relative;
   left: 0;
@@ -34,6 +41,11 @@
   top: 25%;
   height: auto;
   background-color: #fff8e0;
+}
+
+.portrait .contact-info {
+  left: 1em;
+  top: 10%;
 }
 
 .contact-info-inner {
