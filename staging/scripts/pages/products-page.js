@@ -40,8 +40,68 @@ define(['jquery'], function ($) {
 
       // Handle visibility of buttons
       self.fadeToToggle(self.$imageRollArrowLeft, (self.currentImageRollIndex === 0));
-      self.fadeToToggle(self.$imageRollArrowRight, (self.currentImageRollIndex + self.slideControls.getImageAmounts() >= self.rollElements));
+      self.fadeToToggle(self.$imageRollArrowRight, (self.currentImageRollIndex + self.getImageAmounts() >= self.rollElements));
     });
+
+    $(window).resize(function () {
+      self.orientationResize();
+    });
+
+    $(window).on('orientationchange', function () {
+      self.orientationResize();
+    });
+    self.orientationResize();
+  };
+
+  ProductsPage.prototype.orientationResize = function () {
+    var self = this;
+    var ratio = $(window).width() / $(window).height();
+    console.log("ratio ?", ratio);
+    console.log("screen width and height", $(window).width(), $(window).height());
+    var $productsDisplay = $('.products-display');
+    var $body = $('body');
+
+    // Landscape
+    if (ratio > 1) {
+      $body.removeClass('portrait');
+      self.resizeWrapper($productsDisplay);
+    } else {
+
+      // Portrait
+      $body.addClass('portrait');
+      $body.trigger('reset-image-roll');
+      self.portraitResize($productsDisplay);
+    }
+
+    self.resizeProductRoll();
+  };
+
+  ProductsPage.prototype.portraitResize = function ($productsDisplay) {
+    var $productsDisplay = $productsDisplay || $('.products-display');
+
+    $productsDisplay.removeClass('two-images four-images five-images').addClass('three-images');
+    this.imageAmounts = 3;
+  };
+
+  ProductsPage.prototype.resizeWrapper = function ($productsDisplay) {
+    var self = this;
+    var windowWidth = $(window).width();
+
+    var $productsDisplay = $productsDisplay || $('.products-display');
+
+    if (windowWidth <= 600) {
+      $productsDisplay.removeClass('three-images four-images five-images').addClass('two-images');
+      self.imageAmounts = 2;
+    } else if (windowWidth <= 900) {
+      $productsDisplay.removeClass('two-images four-images five-images').addClass('three-images');
+      self.imageAmounts = 3;
+    } else if (windowWidth <= 1200) {
+      $productsDisplay.removeClass('two-images three-images five-images').addClass('four-images');
+      self.imageAmounts = 4;
+    } else {
+      $productsDisplay.removeClass('two-images three-images four-images').addClass('five-images');
+      self.imageAmounts = 5;
+    }
   };
 
   ProductsPage.prototype.getBeerClasses = function (beerData) {
@@ -55,6 +115,47 @@ define(['jquery'], function ($) {
     });
 
     return beerArray;
+  };
+
+  ProductsPage.prototype.resizeProductRoll = function () {
+    var $productsDisplay = $('.products-display');
+    console.log("products display ?", $productsDisplay);
+    var $productsList = $('.products-list');
+    console.log("products list ?", $productsList);
+    var $images = $productsDisplay.find('.mix');
+    console.log("images", $images);
+
+    var decrementPercentage = 0.5;
+
+    // Reset image height
+    $images.css('width', '');
+
+    // Reduce image size if products display is too big.
+    console.log("prod display", $productsDisplay.height());
+    console.log("prod display outer", $productsDisplay.outerHeight());
+    console.log("prod list", $productsList.height());
+    console.log("prod list inner", $productsList.innerHeight());
+    if ($productsDisplay.outerHeight() > $productsList.height()) {
+      var reduceImageSize = function ($images, currWidth) {
+        var newWidth = currWidth - decrementPercentage;
+        $images.css('width', newWidth + '%');
+      };
+
+      var imagesTooBig = true;
+      while(imagesTooBig) {
+        var currWidth = $images.width() / $productsList.width() * 100;
+        reduceImageSize($images, currWidth);
+        console.log("current width", currWidth);
+
+        console.log("prod display", $productsDisplay.height());
+        console.log("prod display outer", $productsDisplay.outerHeight());
+        console.log("prod list", $productsList.innerHeight());
+        console.log("prod list inner", $productsList.height());
+        if ($productsDisplay.outerHeight() < $productsList.height()) {
+          imagesTooBig = false;
+        }
+      }
+    }
   };
 
   ProductsPage.prototype.loadClones = function () {
@@ -91,7 +192,7 @@ define(['jquery'], function ($) {
     var self = this;
     var $mixElements = this.$productsList.find('.mix');
     var scrollAmount = $mixElements.get(0).offsetWidth;
-    var visibleElements = this.slideControls.getImageAmounts();
+    var visibleElements = this.getImageAmounts();
     var rollElements = 0;
     $mixElements.each(function () {
       if ($(this).is(':visible')) {
@@ -155,6 +256,10 @@ define(['jquery'], function ($) {
       '-webkit-transform': 'translateX(' + value + 'px)',
       transform: 'translateX(' + value + 'px)'
     })
+  };
+
+  ProductsPage.prototype.getImageAmounts = function () {
+    return this.imageAmounts;
   };
 
   ProductsPage.prototype.fadeToToggle = function ($element, boolean) {

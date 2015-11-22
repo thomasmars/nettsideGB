@@ -48,6 +48,9 @@ define(function (require) {
           new GraffHeader($wrapper, productsPage);
           new ContactPage();
 
+          // Resize products page
+          productsPage.orientationResize();
+
           // Finally load clones to create 'product roll'
           productsPage.loadClones();
         });
