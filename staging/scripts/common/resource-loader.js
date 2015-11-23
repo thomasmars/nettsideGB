@@ -55,20 +55,7 @@ define(['jquery', 'mix-it-up'], function ($) {
       }
     };
 
-    self.initProductPagesImageLoad = function () {
-      var $productImages = $('.products-pages');
-      $productImages.each(function () {
-        var $img = $(this).find('img');
-        var src = $img.attr('data-src');
-
-        if(src){
-          $img[0].src = src;
-        }
-      });
-    };
-
     var initMainImagesLoad = function () {
-      var self = this;
       var $mainImages = $('.img-home, .img-contact');
 
       var resizeImages = function () {
@@ -81,20 +68,6 @@ define(['jquery', 'mix-it-up'], function ($) {
       $(window).resize(function () {
         resizeImages();
       });
-    };
-
-    self.initProductPageThumbnails = function () {
-      var $thumbnails = $('.products-display .mix');
-      $thumbnails.each(function () {
-        var $img = $(this).find('img');
-        var src = $img.attr('data-src');
-
-        if(src){
-          $img[0].src = src;
-        }
-      });
-
-      return self;
     };
 
     self.init = function () {

@@ -33,14 +33,9 @@ define(function (require) {
         .promise()
         .then(function () {
 
-          // Start loading image roll images
-          resourceLoader.initProductPageThumbnails();
-
           // Init mix it up
           resourceLoader.initMixItUp();
 
-          // Start loading product pages images
-          resourceLoader.initProductPagesImageLoad();
 
           // Enable product page functionality
           var slideControls = new SlideControls($wrapper);
@@ -56,4 +51,6 @@ define(function (require) {
         });
     });
   });
+
+
 });

@@ -30,8 +30,23 @@ define(['jquery'], function ($) {
       // Reinit image roll buttons when done mixing
       self.$mixItUp.on('mixEnd', function () {
         self.initImageRollButtons();
-      })
+
+        // Unset height of inner container
+        $('.products-image-roll-inner').css('height', '');
+        self.resizeProductRoll();
+      });
+
+
+      self.$mixItUp.on('mixStart', function () {
+        var $innerRoll = $('.products-image-roll-inner');
+        var minSize = $innerRoll.children('.mix').height();
+
+        // Set height of inner container
+        $innerRoll.css('min-height', minSize + 'px');
+      });
+
     }, 100);
+
 
     $('body').on('reset-image-roll', function () {
       // Reset image roll
@@ -47,17 +62,12 @@ define(['jquery'], function ($) {
       self.orientationResize();
     });
 
-    $(window).on('orientationchange', function () {
-      self.orientationResize();
-    });
     self.orientationResize();
   };
 
   ProductsPage.prototype.orientationResize = function () {
     var self = this;
     var ratio = $(window).width() / $(window).height();
-    console.log("ratio ?", ratio);
-    console.log("screen width and height", $(window).width(), $(window).height());
     var $productsDisplay = $('.products-display');
     var $body = $('body');
 
@@ -119,42 +129,39 @@ define(['jquery'], function ($) {
 
   ProductsPage.prototype.resizeProductRoll = function () {
     var $productsDisplay = $('.products-display');
-    console.log("products display ?", $productsDisplay);
     var $productsList = $('.products-list');
-    console.log("products list ?", $productsList);
     var $images = $productsDisplay.find('.mix');
-    console.log("images", $images);
-
     var decrementPercentage = 0.5;
+
+    // Reset products display
+    $productsDisplay.removeClass('full-height');
 
     // Reset image height
     $images.css('width', '');
 
     // Reduce image size if products display is too big.
-    console.log("prod display", $productsDisplay.height());
-    console.log("prod display outer", $productsDisplay.outerHeight());
-    console.log("prod list", $productsList.height());
-    console.log("prod list inner", $productsList.innerHeight());
     if ($productsDisplay.outerHeight() > $productsList.height()) {
+      // Disable skewered centering since product list is taking up full height
+      $productsDisplay.addClass('full-height');
+
+
       var reduceImageSize = function ($images, currWidth) {
         var newWidth = currWidth - decrementPercentage;
         $images.css('width', newWidth + '%');
       };
 
       var imagesTooBig = true;
-      while(imagesTooBig) {
+      var test = 0;
+      while(imagesTooBig && test < 100) {
+        $productsDisplay.addClass('disable-transitions');
         var currWidth = $images.width() / $productsList.width() * 100;
+        test += 1;
         reduceImageSize($images, currWidth);
-        console.log("current width", currWidth);
-
-        console.log("prod display", $productsDisplay.height());
-        console.log("prod display outer", $productsDisplay.outerHeight());
-        console.log("prod list", $productsList.innerHeight());
-        console.log("prod list inner", $productsList.height());
         if ($productsDisplay.outerHeight() < $productsList.height()) {
           imagesTooBig = false;
         }
       }
+      $productsDisplay.removeClass('disable-transitions');
     }
   };
 
