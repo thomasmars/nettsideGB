@@ -146,7 +146,7 @@ define(['jquery'], function ($) {
     $images.css('width', '');
 
     // Reduce image size if products display is too big.
-    if ($productsDisplay.outerHeight() > $productsList.height()) {
+    if (this.isPortrait && ($productsDisplay.outerHeight() > $productsList.height())) {
       // Disable skewered centering since product list is taking up full height
       $productsDisplay.addClass('full-height');
 
