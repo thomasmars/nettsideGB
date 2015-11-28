@@ -3,10 +3,9 @@
  */
 define(['jquery'], function ($) {
 
-  var ProductsPage = function (slideControls, beerData) {
+  var ProductsPage = function (beerData) {
     var self = this;
 
-    this.slideControls = slideControls;
     this.currentIndex = 0;
     this.$mixItUp = $('.products-display');
     this.$productsList = $('.products-list');
@@ -24,6 +23,14 @@ define(['jquery'], function ($) {
 
     this.beerClasses = this.getBeerClasses(beerData);
 
+    self.setMinHeightInnerRoll = function () {
+      var $innerRoll = $('.products-image-roll-inner');
+      var minSize = $innerRoll.children('.mix').height();
+
+      // Set height of inner container
+      $innerRoll.css('min-height', minSize + 'px');
+    };
+
     setTimeout(function () {
       self.initImageRollButtons();
 
@@ -36,13 +43,12 @@ define(['jquery'], function ($) {
         self.resizeProductRoll();
       });
 
+      self.$mixItUp.on('mixLoad', function () {
+        self.setMinHeightInnerRoll();
+      });
 
       self.$mixItUp.on('mixStart', function () {
-        var $innerRoll = $('.products-image-roll-inner');
-        var minSize = $innerRoll.children('.mix').height();
-
-        // Set height of inner container
-        $innerRoll.css('min-height', minSize + 'px');
+        self.setMinHeightInnerRoll();
       });
 
     }, 100);
@@ -75,9 +81,9 @@ define(['jquery'], function ($) {
     if (ratio > 1) {
       $body.removeClass('portrait');
       self.resizeWrapper($productsDisplay);
-    } else {
-
-      // Portrait
+      self.isPortrait = false;
+    } else { // Portrait
+      self.isPortrait = true;
       $body.addClass('portrait');
       $body.trigger('reset-image-roll');
       self.portraitResize($productsDisplay);
@@ -163,6 +169,8 @@ define(['jquery'], function ($) {
       }
       $productsDisplay.removeClass('disable-transitions');
     }
+
+    this.setMinHeightInnerRoll()
   };
 
   ProductsPage.prototype.loadClones = function () {
@@ -258,11 +266,14 @@ define(['jquery'], function ($) {
   };
 
   ProductsPage.prototype.setImageRollTranslate = function (value) {
+    var self = this;
     value = value ? value : 0;
-    this.$innerImageRoll.css({
-      '-webkit-transform': 'translateX(' + value + 'px)',
-      transform: 'translateX(' + value + 'px)'
-    })
+    if (!self.isPortrait) {
+      this.$innerImageRoll.css({
+        '-webkit-transform': 'translateX(' + value + 'px)',
+        transform: 'translateX(' + value + 'px)'
+      })
+    }
   };
 
   ProductsPage.prototype.getImageAmounts = function () {
@@ -294,13 +305,16 @@ define(['jquery'], function ($) {
     var self = this;
     $buttons.click(function () {
       self.goHome();
-    })
+    });
   };
 
   ProductsPage.prototype.initFilterButtons = function () {
     var self = this;
 
-    $('.filter-series button').click(function () {
+    $('.filter-series button')
+      .on('touchstart', function () {
+        $(this).addClass('no-hover');
+      }).click(function () {
 
       // Remove all active classes for buttons
       $('.filter-series button').each(function () {
@@ -309,6 +323,7 @@ define(['jquery'], function ($) {
 
       // Add active state to this button
       $(this).addClass('active');
+      $(this).removeClass('no-hover');
     });
   };
 

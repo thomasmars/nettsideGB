@@ -41,16 +41,16 @@ define(['jquery', 'mix-it-up'], function ($) {
         var newHeight = width / imgRatio;
 
         // Remove top height
-        var top = newHeight - height;
+/*        var top = newHeight - height;
         if ($img.hasClass('img-contact')) {
           // Add 10 %
           top -= (newHeight / 9);
-        }
+        }*/
 
         $img.css({
           'width': width,
-          'height': 'auto',
-          'top': -top
+          'height': 'auto'
+/*          'top': -top*/
         })
       }
     };

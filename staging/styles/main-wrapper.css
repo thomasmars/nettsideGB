@@ -84,9 +84,20 @@ body {
   height: auto;
 }
 
+.img-home {
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
 .img-contact {
   position: relative;
-  top: -220px;
+  top: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 
 .portrait .img-contact {

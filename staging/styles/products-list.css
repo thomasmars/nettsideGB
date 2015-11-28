@@ -183,7 +183,7 @@
 .products-pages .product-images {
   width: 50%;
   box-sizing: border-box;
-  padding: 0 1em;
+  padding: 0 0 0 1em;
 }
 
 .portrait .product-images {
@@ -276,10 +276,15 @@
 
 .portrait .products-display {
   white-space: normal;
-  overflow: visible;
-  padding: 0.375em 0;
-  box-sizing: border-box;
   text-align: center;
+  padding: 0;
+  height: 100%;
+  top: auto;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .products-display.full-height {
@@ -295,6 +300,7 @@
 
 .portrait .products-display-inner {
   padding: 1em 0;
+  flex: 2;
 }
 
 .products-list .products-image-roll {
@@ -312,6 +318,10 @@
   transform: translateX(0);
   -webkit-transition: ease-out 0.2s;
   transition: ease-out 0.2s;
+}
+
+.portrait .products-image-roll {
+  height: 100%;
 }
 
 .products-display.disable-transitions .products-image-roll-inner {
@@ -360,15 +370,18 @@
   transform: translateX(-50%);
 }
 
-.products-list .products-image-roll-arrow:hover:before {
+.products-list .products-image-roll-arrow:before {
   -webkit-animation-name: move-left;
   -moz-animation-name: move-left;
   -o-animation-name: move-left;
   animation-name: move-left;
-  -webkit-animation-duration: 2s;
-  -moz-animation-duration: 2s;
-  -o-animation-duration: 2s;
-  animation-duration: 2s;
+  -webkit-animation-duration: 8s;
+  -moz-animation-duration: 8s;
+  -o-animation-duration: 8s;
+  animation-duration: 8s;
+  -moz-animation-delay: 3s;
+  -o-animation-delay: 3s;
+  animation-delay: 3s;
   -webkit-animation-timing-function: ease;
   -moz-animation-timing-function: ease;
   -o-animation-timing-function: ease;
@@ -383,23 +396,11 @@
   content: '\f105';
 }
 
-.products-list .products-image-roll-arrow.right:hover:before {
+.products-list .products-image-roll-arrow.right:before {
   -webkit-animation-name: move-right;
   -moz-animation-name: move-right;
   -o-animation-name: move-right;
   animation-name: move-right;
-  -webkit-animation-duration: 2s;
-  -moz-animation-duration: 2s;
-  -o-animation-duration: 2s;
-  animation-duration: 2s;
-  -webkit-animation-timing-function: ease;
-  -moz-animation-timing-function: ease;
-  -o-animation-timing-function: ease;
-  animation-timing-function: ease;
-  -webkit-animation-iteration-count: infinite;
-  -moz-animation-iteration-count: infinite;
-  -o-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
 }
 
 .controls-filter .filter-series {
@@ -473,10 +474,10 @@
   transition: transform 0.3s, opacity 0.2s;
 }
 
-.controls-filter button:hover::before,
-.controls-filter button:hover::after,
-.controls-filter button.active::before,
-.controls-filter button.active::after {
+.controls-filter button:not(.no-hover):hover::before,
+.controls-filter button:not(.no-hover):hover::after,
+.controls-filter button:not(.no-hover).active::before,
+.controls-filter button:not(.no-hover).active::after {
   opacity: 1;
   -webkit-transform: translateX(0px);
   -moz-transform: translateX(0px);
@@ -484,30 +485,30 @@
 }
 
 @keyframes move-right {
-  33% {
+  10% {
     -webkit-transform: translateX(10%);
     transform: translateX(10%);
   }
-  66% {
+  20% {
     -webkit-transform: translateX(-100%);
     transform: translateX(-100%);
   }
-  100% {
+  30% {
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }
 }
 
 @keyframes move-left {
-  33% {
+  10% {
     -webkit-transform: translateX(-110%);
     transform: translateX(-110%);
   }
-  66% {
-    -webkit-transform: translateX(0%);
-    transform: translateX(0%);
+  20% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
   }
-  100% {
+  30% {
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);
   }

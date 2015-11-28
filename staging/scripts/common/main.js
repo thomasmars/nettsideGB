@@ -38,8 +38,8 @@ define(function (require) {
 
 
           // Enable product page functionality
-          var slideControls = new SlideControls($wrapper);
-          var productsPage = new ProductsPage(slideControls, view);
+          new SlideControls($wrapper);
+          var productsPage = new ProductsPage(view);
           new GraffHeader($wrapper, productsPage);
           new ContactPage();
 
