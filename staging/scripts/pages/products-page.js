@@ -64,6 +64,14 @@ define(['jquery'], function ($) {
       self.fadeToToggle(self.$imageRollArrowRight, (self.currentImageRollIndex + self.getImageAmounts() >= self.rollElements));
     });
 
+    $('body').on('changed-slide', function () {
+      self.removeFooterColor();
+    });
+
+    $('.products').on('touchstart', function () {
+      console.log("started touching");
+    });
+
     $(window).resize(function () {
       self.orientationResize();
     });
@@ -232,6 +240,9 @@ define(['jquery'], function ($) {
         self.fadeToShown(self.$imageRollArrowRight);
 
         // Negative translation
+        scrollAmount = $mixElements.get(0).offsetWidth;
+
+        console.log("scroll amount ?", scrollAmount);
         self.setImageRollTranslate(-1 * self.currentImageRollIndex * scrollAmount);
       });
 
@@ -252,6 +263,9 @@ define(['jquery'], function ($) {
         self.fadeToShown(self.$imageRollArrowLeft);
 
         // Negative translation
+        scrollAmount = $mixElements.get(0).offsetWidth;
+        console.log("scroll amount ?", scrollAmount);
+
         self.setImageRollTranslate(-1 * self.currentImageRollIndex * scrollAmount);
       });
 
@@ -268,6 +282,7 @@ define(['jquery'], function ($) {
   ProductsPage.prototype.setImageRollTranslate = function (value) {
     var self = this;
     value = value ? value : 0;
+    console.log("translating ", value);
     if (!self.isPortrait) {
       this.$innerImageRoll.css({
         '-webkit-transform': 'translateX(' + value + 'px)',

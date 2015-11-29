@@ -21,13 +21,14 @@
 body {
   overflow: hidden;
   margin: 0;
+  top: 0;
+  left: 0;
   height: 100%;
   width: 100%;
   position: absolute;
 }
 
 .portrait {
-  font-size: 1.5em;
 }
 
 .wrapper {
@@ -106,49 +107,49 @@ body {
   transform: translateX(-50%);
 }
 
-body .footer {
+body .footer-inner {
   -webkit-transition: background-color 0.8s ease-out;
   transition: background-color 0.8s ease-out;
 }
 
 /* Color schemes */
-.footer,
+.footer-inner,
 .products-pages .back-to-product,
 .products-list .products-image-roll-arrow {
   background: #F6AC26;
 }
 
-body.dunkel .footer,
+body.dunkel .footer-inner,
 .products-pages.product-dunkel .product-header .back-to-product {
 background-color: #915F2F;
 }
 
-body.helles .footer,
+body.helles .footer-inner,
 .products-pages.product-helles .product-header .back-to-product {
   background-color: #E3A11F;
 }
 
-body.portland .footer,
+body.portland .footer-inner,
 .products-pages.product-portland .product-header .back-to-product {
   background-color: #C77716;
 }
 
-body.redhead .footer,
+body.redhead .footer-inner,
 .products-pages.product-redhead .product-header .back-to-product {
   background-color: #B73B24;
 }
 
-body.session .footer,
+body.session .footer-inner,
 .products-pages.product-session .product-header .back-to-product {
   background-color: #14A29B;
 }
 
-body.stillehav .footer,
+body.stillehav .footer-inner,
 .products-pages.product-stillehav .product-header .back-to-product {
   background-color: #219DB5;
 }
 
-body.stout .footer,
+body.stout .footer-inner,
 .products-pages.product-stout .product-header .back-to-product {
   background-color: #523423;
 }

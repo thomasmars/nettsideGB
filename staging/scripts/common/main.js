@@ -9,6 +9,7 @@ define(function (require) {
   var ResourceLoader = require('./resource-loader');
   var ProductsPage = require('pages/products-page');
   var ContactPage = require('pages/contact-page');
+  var TouchControls = require('./touch-controls');
 
   // Mustache templates
   var productsMain = require('text!templates/products-main.mustache');
@@ -38,7 +39,8 @@ define(function (require) {
 
 
           // Enable product page functionality
-          new SlideControls($wrapper);
+          var slideControls = new SlideControls($wrapper);
+          new TouchControls($wrapper, slideControls);
           var productsPage = new ProductsPage(view);
           new GraffHeader($wrapper, productsPage);
           new ContactPage();
@@ -51,6 +53,11 @@ define(function (require) {
         });
     });
   });
+
+  $('.footer').on('touchstart', function (event) {
+    console.log("footer touched");
+    event.preventDefault();
+  })
 
 
 });

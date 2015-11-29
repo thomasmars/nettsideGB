@@ -28,7 +28,7 @@ define(['jquery'], function ($) {
     } else {
       this.$wrapper.addClass('show-products');
     }
-    $('body').removeClass();
+    $('body').trigger('changed-slide');
   };
 
   SlideControls.prototype.slideUp = function () {
@@ -37,7 +37,7 @@ define(['jquery'], function ($) {
     } else if (this.$wrapper.hasClass('show-products')) {
       this.$wrapper.removeClass('show-products');
     }
-    $('body').removeClass();
+    $('body').trigger('changed-slide');
   };
 
   return SlideControls;
